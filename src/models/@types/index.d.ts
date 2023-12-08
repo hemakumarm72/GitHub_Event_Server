@@ -12,10 +12,9 @@ export type UpdateUserDocument = {
 export type UserDocument = mongoose.Document & NewUserDocument;
 
 export type NewProjectDocument = {
-  userId: string;
+  projectId: string;
   perSharePrice: number;
   walletAddress: string;
-  gitRepoId: string;
   gitHubLink: string;
   projectName: string;
   dueDate: Date;
@@ -31,6 +30,5 @@ export type UpdateProjectDocument = {
   stackingAmount?: number;
   limitParticipant?: number;
 };
-
 
 export type ProjectDocument = mongoose.Document & NewProjectDocument;

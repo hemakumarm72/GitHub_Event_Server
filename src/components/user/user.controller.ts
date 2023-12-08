@@ -17,7 +17,13 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   try {
     const { walletAddress } = req.body;
     const getCheck = await getWallet(walletAddress);
-    if (!getCheck) throw new Error('1001'); //TODO: wallet address not found
+    if (!getCheck) {
+      const user: NewUserDocument = {
+        userId: generatedId(),
+        walletAddress,
+      };
+      await AddWallet(user);
+    }
     return handleResponse(res, 200, {});
   } catch (err: any) {
     console.log(err);

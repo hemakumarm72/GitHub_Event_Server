@@ -5,5 +5,6 @@ import * as controller from './user.controller';
 const router = express.Router();
 
 router.get('/health', controller.getHealth);
+router.put('/wallet', controller.login);
 
 export default router;

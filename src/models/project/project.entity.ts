@@ -5,9 +5,8 @@ import { ProjectDocument } from '../@types';
 // declare your schema
 export const projectSchema = new mongoose.Schema(
   {
-    userId: { type: String },
     walletAddress: { type: String, required: true },
-    gitRepoId: { type: String, unique: true, required: true },
+    projectId: { type: String, unique: true, required: true },
     gitHubLink: { type: String, required: true },
     projectName: { type: String, required: true },
     dueDate: { type: Date, default: Date },
