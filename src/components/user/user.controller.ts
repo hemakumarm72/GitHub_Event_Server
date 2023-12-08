@@ -35,9 +35,9 @@ export const registerWallet = async (req: Request, res: Response, next: NextFunc
       userId: generatedId(),
       walletAddress,
     };
-    await AddWallet(walletAddress);
+    await AddWallet(user);
 
-    return handleResponse(res, 200, {});
+    return handleResponse(res, 200, { user });
   } catch (err: any) {
     console.log(err);
     next(err);
