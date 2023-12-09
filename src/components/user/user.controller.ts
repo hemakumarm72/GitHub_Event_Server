@@ -18,7 +18,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   try {
     const { walletAddress } = req.body;
     const getCheck = await getWallet(walletAddress);
-    if (!getCheck) throw badImplementationException('1002');
+    if (!getCheck) throw new Error('1002');
     return handleResponse(res, 200, {});
   } catch (err: any) {
     console.error(err);
