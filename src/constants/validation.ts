@@ -6,6 +6,20 @@ export const VALIDATION_STRING = (where: Location): ParamSchema => ({
   notEmpty: true,
 });
 
+export const VALIDATION_LOGIN = (where: Location): ParamSchema => ({
+  in: [where],
+  isEmail: true,
+  optional: {
+    options: { nullable: true },
+  },
+
+  custom: {
+    options: (value, { req, location, path }) => {
+      if (value.length < 3) throw new Error('1002');
+      return true;
+    },
+  },
+});
 export const VALIDATION_STRING_OPTIONAL = (where: Location): ParamSchema => ({
   in: [where],
   isString: true,
