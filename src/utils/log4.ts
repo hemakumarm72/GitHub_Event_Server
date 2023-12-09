@@ -56,8 +56,7 @@ const config = {
 export class Logger {
   public static initialize() {
     Log4js.addLayout('json', (config) => {
-      r
-      eturn (logEvent) => safeStringify(logEvent) + config.separator;
+      return (logEvent) => safeStringify(logEvent) + config.separator;
     });
     Log4js.configure(config);
   }
