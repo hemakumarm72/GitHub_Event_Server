@@ -8,6 +8,10 @@ export const userSchema = new mongoose.Schema(
     userId: { type: String, unique: true, required: true },
     username: { type: String, required: true },
     walletAddress: { type: String, default: null },
+    pushCount: { type: Number, default: 0 },
+    pullRequestOpenCount: { type: Number, default: 0 },
+    pullRequestCloseCount: { type: Number, default: 0 },
+    reward: { type: Number, default: 0 },
   },
   { timestamps: true },
 );

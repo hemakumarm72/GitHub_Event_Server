@@ -11,6 +11,15 @@ export const addProject = async (project: NewProjectDocument) => {
   }
 };
 
+export const getProject = async () => {
+  try {
+    const result = await Project.find({});
+    return result;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
 export const getProjectByWalletAddress = async (walletAddress: string) => {
   try {
     const get = await Project.find({ walletAddress });

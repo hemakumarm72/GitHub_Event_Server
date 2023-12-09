@@ -4,6 +4,7 @@ import { AddWallet, getWallet } from '../../models/user';
 import { NewUserDocument } from '../../models/@types';
 import { generatedId } from '../../utils/randomId';
 import { HttpException, badImplementationException } from '../../utils/apiErrorHandler';
+import { getProject } from '../../models/project';
 
 export const getHealth = (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -41,6 +42,16 @@ export const registerWallet = async (req: Request, res: Response, next: NextFunc
 
     return handleResponse(res, 200, { user });
   } catch (err: any) {
+    console.log(err);
+    next(err);
+  }
+};
+
+export const allProject = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const getPro = await getProject();
+    return handleResponse(res, 200, { getPro });
+  } catch (err) {
     console.log(err);
     next(err);
   }

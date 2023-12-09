@@ -58,7 +58,16 @@ export const projectListening = async (req: Request, res: Response, next: NextFu
     const projectSearch = await getProjectByProjectId(projectId);
     if (!projectSearch) throw badImplementationException('1004'); // TODO: Project Id not found
     const data = req.body;
-    console.log(data);
+    switch (data?.action) {
+      case 'closed':
+        const data = {
+          username: '',
+        };
+        return;
+
+      default:
+        break;
+    }
     return handleResponse(res, 200, {});
   } catch (err: any) {
     console.log(err);
