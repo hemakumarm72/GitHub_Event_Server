@@ -33,15 +33,9 @@ export const config = async (app: express.Application) => {
       }
     }
   });
-  app
-    .get('/', (req, res) => {
-      res.sendFile(path.join(__dirname, '../../public/index.html'));
-    })
-    .get('/health', (req, res) => {
-      return res.status(200).send();
-    });
-  // app.use('/', (req: Request, res: Response, next: NextFunction): void => {
-  //   res.json({ message: 'Allo! Catch-all route.' });
-  // });
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/index.html'));
+  });
+
   await connectMongo();
 };

@@ -2,12 +2,25 @@ import * as ERROR from '../constants/errorMessage';
 import { ValidationError } from 'express-validator';
 import { io } from '../bin/www';
 
+/**
+ * HttpException.
+ * @param {number} statusCode The first message.
+ * @param {string} message The second code.
+ * @param {string | string[]} errorMessage The third status.
+ * @param {number} subStatusCode The third status.
+ *  @return {any}
+ */
 export class HttpException extends Error {
   statusCode?: number;
   message: string;
   errorMessage: string | string[];
   subStatusCode?: string;
-
+  /**
+   * HttpException.
+   * @param {number} statusCode The first message.
+   * @param {string | string[]} messages The second code.
+   * @param {number} subStatusCode The third status.
+   */
   constructor(statusCode: number, messages: string | string[], subStatusCode: string) {
     super(messages[0]);
     this.statusCode = statusCode || 500;
@@ -27,44 +40,62 @@ export const validationException = (errors: ValidationError[]) => {
   );
 };
 
-export const invalidException = (error: any, subStatusCode: string) => {
-  error ? console.warn(error) : console.warn(ERROR.DATANOTFOUND);
+export const invalidException = (error: string, subStatusCode: string) => {
+  error;
   return new HttpException(400, error || ERROR.DATANOTFOUND, subStatusCode);
 };
 
-export const dataNotExistException = (error: any) => {
-  error ? console.warn(error) : console.warn(ERROR.DATANOTFOUND);
+export const dataNotExistException = (error: string) => {
+  error;
   return new HttpException(400, error || ERROR.DATANOTFOUND, '1002');
 };
 
-export const userNotActivateException = (error: any) => {
-  error ? console.warn(error) : console.warn(ERROR.USERNOTACTIVATE);
+export const userNotActivateException = (error: string) => {
+  error;
   return new HttpException(400, error || ERROR.USERNOTACTIVATE, '1003');
 };
 
-export const dataExceedException = (error: any) => {
-  error ? console.warn(error) : console.warn(ERROR.DATAEXCEED);
+export const dataExceedException = (error: string) => {
+  error;
   return new HttpException(400, error || ERROR.DATAEXCEED, '1004');
 };
 
-export const unauthorizedException = (error: any) => {
-  error ? console.warn(error) : console.warn(ERROR.UNAUTH);
+export const unauthorizedException = (error: string) => {
+  error;
   return new HttpException(401, error || ERROR.UNAUTH, '2001');
 };
-export const dataConflictException = (error: any, subStatusCode?: string) => {
+export const dataConflictException = (error: string, subStatusCode?: string) => {
   error ? console.warn(error) : console.warn(ERROR.CONFLICT);
   return new HttpException(409, error || ERROR.CONFLICT, subStatusCode ? subStatusCode : '3001');
 };
 
-export const pageNoFoundException = (error: any) => {
-  error ? console.warn(error) : console.warn(ERROR.PAGENOTFOUND);
+export const pageNoFoundException = (error: string) => {
+  error;
   return new HttpException(404, error || ERROR.PAGENOTFOUND, '4000');
 };
 
-export const badImplementationException = (error: any) => {
-  error ? console.error(error) : console.error(ERROR.BADIMPLEMENTATION);
+export const badImplementationException = (error: string) => {
+  error;
   return new HttpException(500, error || ERROR.BADIMPLEMENTATION, '5000');
 };
+
+export const softDeleteImplementation = (error: string) => {
+  error;
+  return new HttpException(404, error || ERROR.PAGENOTFOUND, '1015');
+};
+
+export const apiLimitationExceed = (error: string) => {
+  error;
+  return new HttpException(500, error || ERROR.PAGENOTFOUND, '1020');
+};
+
+/* TODO: subStatusCode error 
+  1.1020 is ip is over limit exceed 
+  2. 1021 is otp is expired
+  3. 1022 is field name wrong
+  4. 1023 is wrong secret code
+
+ */
 
 export const socketErrorHandle = (sessionId: string, message: string, subStatusCode: string) => {
   return io.of('/api/user/socket').to(sessionId).emit('Error', {
