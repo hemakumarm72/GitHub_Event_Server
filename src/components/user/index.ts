@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.get('/health', controller.getHealth);
 router.put('/wallet', controller.login);
+router.post('/register', controller.registerWallet);
 
 export default router;
