@@ -1,16 +1,3 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "dist/bin/www.js",
-      "use": "@vercel/node",
-      "config": { "includeFiles": ["dist/**"] }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/bin/www.js"
-    }
-  ]
+  "rewrites": [{ "source": "/src/(.*)", "destination": "/dist/bin/www.js" }]
 }
