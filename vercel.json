@@ -2,8 +2,9 @@
   "version": 2,
   "builds": [
     {
-      "src": "./src/bin/www.ts",
-      "use": "@vercel/node"
+      "src": "dist/bin/www.js",
+      "use": "@vercel/node",
+      "config": { "includeFiles": ["dist/**"] }
     }
   ],
   "routes": [
