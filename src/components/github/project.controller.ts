@@ -1,25 +1,39 @@
-import { Request, Response, NextFunction } from 'express';
+import e, { Request, Response, NextFunction } from 'express';
 import { handleResponse } from '../../middleware/requestHandle';
 import { addProject, getProjectByProjectId, getProjectByWalletAddress } from '../../models/project';
 import { NewProjectDocument } from '../../models/@types';
 import { generatedId } from '../../utils/randomId';
+import { LINK } from '../../config/env';
 
 export const addProjects = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { walletAddress, gitHubLink, projectName, dueDate, stackingAmount, perSharePrice, limitParticipant } =
-      req.body;
+    const {
+      contractEmail,
+      walletAddress,
+      contractAddress,
+      gitHubLink,
+      projectName,
+      dueDate,
+      stackingAmount,
+      perSharePrice,
+      mileStoneNo,
+    } = req.body;
     const project: NewProjectDocument = {
       projectId: generatedId(),
+      contractEmail,
+      contractAddress,
       walletAddress,
       gitHubLink,
       projectName,
       dueDate,
       stackingAmount,
       perSharePrice,
-      limitParticipant,
+      mileStoneNo,
     };
     await addProject(project);
-    return handleResponse(res, 200, {});
+
+    const link = LINK + `/${project.projectId}`;
+    return handleResponse(res, 200, { link });
   } catch (err: any) {
     console.log(err);
     next(err);

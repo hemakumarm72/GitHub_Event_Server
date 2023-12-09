@@ -6,6 +6,8 @@ import { UserDocument } from '../@types';
 export const userSchema = new mongoose.Schema(
   {
     userId: { type: String, unique: true, required: true },
+    username: { type: String, required: true },
+    profileImg: { type: String },
     walletAddress: { type: String, default: null },
   },
   { timestamps: true },

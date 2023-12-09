@@ -17,13 +17,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   try {
     const { walletAddress } = req.body;
     const getCheck = await getWallet(walletAddress);
-    if (!getCheck) {
-      const user: NewUserDocument = {
-        userId: generatedId(),
-        walletAddress,
-      };
-      await AddWallet(user);
-    }
+    if (!getCheck) throw new Error('1002');
     return handleResponse(res, 200, {});
   } catch (err: any) {
     console.log(err);
@@ -33,12 +27,14 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
 export const registerWallet = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { walletAddress } = req.body;
+    const { username, profileImg, walletAddress } = req.body;
 
     const getCheck = await getWallet(walletAddress);
     if (getCheck) throw new Error('1002'); //TODO: wallet address exits
     const user: NewUserDocument = {
       userId: generatedId(),
+      username,
+      profileImg,
       walletAddress,
     };
     await AddWallet(user);
