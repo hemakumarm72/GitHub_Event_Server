@@ -20,4 +20,4 @@ export const pullCloseSchema = new mongoose.Schema(
 // create the paginated model
 
 // create the paginated model
-export const Pull = mongoose.model('pullClose', pullCloseSchema, 'pullClose');
+export const Pull = mongoose.model('pull', pullCloseSchema, 'pull');
