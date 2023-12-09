@@ -9,6 +9,6 @@ const router = express.Router();
 
 router.post('/', checkSchema(GET_SCHEMA), checkValidation, controller.addProjects);
 router.get('/:walletAddress/', checkSchema(GET_SCHEMA), checkValidation, controller.getProjectByAddress);
-router.get('/github/:projectId', checkSchema(GET_SCHEMA), checkValidation, controller.projectListening);
+router.post('/github/:projectId', checkSchema(GET_SCHEMA), checkValidation, controller.projectListening);
 
 export default router;
