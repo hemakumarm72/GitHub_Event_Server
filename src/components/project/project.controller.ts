@@ -4,6 +4,7 @@ import { addProject, getProjectByProjectId, getProjectByWalletAddress } from '..
 import { NewProjectDocument } from '../../models/@types';
 import { generatedId } from '../../utils/randomId';
 import { LINK } from '../../config/env';
+import { badImplementationException } from '../../utils/apiErrorHandler';
 
 export const addProjects = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -32,7 +33,7 @@ export const addProjects = async (req: Request, res: Response, next: NextFunctio
     };
     await addProject(project);
 
-    const link = LINK + `/${project.projectId}`;
+    const link = LINK + `project/${project.projectId}`;
     return handleResponse(res, 200, { link });
   } catch (err: any) {
     console.log(err);
@@ -55,7 +56,7 @@ export const projectListening = async (req: Request, res: Response, next: NextFu
   try {
     const { projectId } = req.params;
     const projectSearch = await getProjectByProjectId(projectId);
-    if (!projectSearch) throw new Error('1004'); // TODO: Project Id not found
+    if (!projectSearch) throw badImplementationException('1004'); // TODO: Project Id not found
     const data = req.body;
     console.log(data);
     return handleResponse(res, 200, {});
