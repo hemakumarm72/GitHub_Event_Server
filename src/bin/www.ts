@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-import app from "..";
+import app from "../app";
 import debug from "debug";
 import http from "http";
 debug("backend:server");
