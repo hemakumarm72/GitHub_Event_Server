@@ -31,7 +31,6 @@ export class HttpException extends Error {
 }
 
 export const validationException = (errors: ValidationError[]) => {
-  errors && console.warn(errors);
   errors;
   return new HttpException(
     400,

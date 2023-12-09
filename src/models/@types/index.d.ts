@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 export type NewUserDocument = {
   userId: string;
   username: string;
-  profileImg: string;
   walletAddress: string;
 };
 

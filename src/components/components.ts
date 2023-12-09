@@ -3,8 +3,8 @@ const router = express.Router();
 
 // import authComponent from "./auth";
 import userComponent from './user';
-import gitComponent from './github';
+import projectComponent from './project';
 
 router.use('/user', userComponent);
-router.use('/github', gitComponent);
+router.use('/project', projectComponent);
 export default router;

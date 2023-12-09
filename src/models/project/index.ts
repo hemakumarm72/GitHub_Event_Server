@@ -3,7 +3,7 @@ import { Project } from './project.entity';
 
 export const addProject = async (project: NewProjectDocument) => {
   try {
-    const newProject = new Project();
+    const newProject = new Project(project);
     await newProject.save();
     return Promise.resolve();
   } catch (error) {

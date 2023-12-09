@@ -14,7 +14,6 @@ export const projectSchema = new mongoose.Schema(
     stackingAmount: { type: Number, default: 0 },
     mileStoneNo: { type: Number, default: 0 },
     perSharePrice: { type: Number, default: 0 },
-    limitParticipant: { type: Number, min: 4, default: 4 },
   },
   { timestamps: true },
 );
