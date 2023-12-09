@@ -1,8 +1,8 @@
-import { PullClose } from './pullClose.entity';
+import { Pull } from './pull.entity';
 
 export const addPull = async (pull: any) => {
   try {
-    const newProject = new PullClose(pull);
+    const newProject = new Pull(pull);
     await newProject.save();
     return Promise.resolve();
   } catch (error) {
@@ -12,7 +12,7 @@ export const addPull = async (pull: any) => {
 
 export const getPull = async () => {
   try {
-    const result = await PullClose.find({});
+    const result = await Pull.find({});
     return result;
   } catch (error) {
     return Promise.reject(error);
@@ -21,7 +21,7 @@ export const getPull = async () => {
 
 export const getPullByRepoByProjectId = async (search: object) => {
   try {
-    const result = await PullClose.find({ ...search });
+    const result = await Pull.find({ ...search });
     return result;
   } catch (error) {
     return Promise.reject(error);
