@@ -8,7 +8,7 @@ import { GET_SCHEMA } from './project.validation';
 const router = express.Router();
 
 router.post('/', checkSchema(GET_SCHEMA), checkValidation, controller.addProjects);
-router.get('/:walletAddress', checkSchema(GET_SCHEMA), checkValidation, controller.getProjectByAddress);
-router.get('/project/:projectId', checkSchema(GET_SCHEMA), checkValidation, controller.projectListening);
+router.get('/:walletAddress/', checkSchema(GET_SCHEMA), checkValidation, controller.getProjectByAddress);
+router.get('/github/:projectId', checkSchema(GET_SCHEMA), checkValidation, controller.projectListening);
 
 export default router;
