@@ -58,6 +58,7 @@ export const projectListening = async (req: Request, res: Response, next: NextFu
     if (!projectSearch) throw new Error('1004'); // TODO: Project Id not found
     const data = req.body;
     console.log(data);
+    return handleResponse(res, 200, {});
   } catch (err: any) {
     console.log(err);
     next(err);
