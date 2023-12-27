@@ -6,6 +6,10 @@ export type ServerToClientEvents = {
   receiveMessage: (message: object) => void;
   userStatus: (receiverId: string, status: 'online' | 'offline') => void;
   Error: (message: object) => void;
+  me: (message: string) => void;
+  callEnded: () => void;
+  callUser: (message: object) => void;
+  callAccepted: (message: string) => void;
 };
 
 /**
@@ -14,6 +18,8 @@ export type ServerToClientEvents = {
 export type ClientToServerEvents = {
   message: (message: object) => void;
   sendNotification: (message: object) => void;
+  callUser: (message: SocketData) => void;
+  answerCall: (message: SocketData) => void;
 };
 
 export type InterServerEvents = {
@@ -30,6 +36,13 @@ export type SocketData = {
   sessionId: string;
   discussionId: string;
   messageId: string;
+  to: string;
+  userToCall: string;
+  signalData: string;
+  from: string;
+  name: string;
+  signal: string;
+  userToCall: string;
 };
 
 export type ErrorWebSocket = {
