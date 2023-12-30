@@ -9,7 +9,10 @@ export type ServerToClientEvents = {
   me: (message: string) => void;
   callEnded: () => void;
   callUser: (message: object) => void;
+  callScreen: (message: object) => void;
+
   callAccepted: (message: string) => void;
+  callScreenAccepted: (message: string) => void;
 };
 
 /**
@@ -19,7 +22,9 @@ export type ClientToServerEvents = {
   message: (message: object) => void;
   sendNotification: (message: object) => void;
   callUser: (message: SocketData) => void;
+  callScreen: (message: SocketData) => void;
   answerCall: (message: SocketData) => void;
+  answerScreenCall: (message: SocketData) => void;
 };
 
 export type InterServerEvents = {
